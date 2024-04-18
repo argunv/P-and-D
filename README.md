@@ -55,7 +55,7 @@ The project implements CRUD (Create, Read, Update, Delete) REST API methods for 
 
 - A patient can have multiple visits.
 - Each visit belongs to only one patient.
-- Visit entity includes: patient_id, date, diagnosis.
+- Visit entity includes: patient_id, doctor_id, date, diagnosis.
 
 ## Implementation Details
 
