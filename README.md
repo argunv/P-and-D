@@ -31,10 +31,10 @@ Create a `.env` file in the root directory with the following variables:
 
 ```
 PG_HOST={your host here}
-PG_PORT={PostgreSQL port}
-PG_DBNAME={PostgreSQL database name}
-PG_USER={PostgreSQL username}
-PG_PASSWORD={PostgreSQL password}
+POSTGRES_PORT={PostgreSQL port}
+POSTGRES_DBNAME={PostgreSQL database name}
+POSTGRES_USER={PostgreSQL username}
+POSTGRES_PASSWORD={PostgreSQL password}
 FLASK_PORT={Flask port}
 ```
 
