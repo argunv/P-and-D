@@ -20,8 +20,8 @@ CREATE TABLE IF NOT EXISTS api_data.patients (
 );
 
 CREATE TABLE IF NOT EXISTS api_data.visits (
-    patient_id uuid REFERENCES patients,
-    doctor_id uuid REFERENCES doctors,
+    patient_id uuid REFERENCES api_data.patients,
+    doctor_id uuid REFERENCES api_data.doctors,
     visit_date DATE,
     diagnosis TEXT
 );
@@ -40,23 +40,23 @@ VALUES
 
 INSERT INTO api_data.visits
 VALUES 
-    ((SELECT id FROM patients WHERE first_name = 'John' AND last_name = 'Doe'), 
-     (SELECT id FROM doctors WHERE last_name = 'Johnson'), '2024-03-10', 'High blood pressure'),
-    ((SELECT id FROM patients WHERE first_name = 'John' AND last_name = 'Doe'), 
-     (SELECT id FROM doctors WHERE last_name = 'Davis'), '2023-11-20', 'Annual checkup');
+    ((SELECT id FROM api_data.patients WHERE first_name = 'John' AND last_name = 'Doe'), 
+     (SELECT id FROM api_data.doctors WHERE last_name = 'Johnson'), '2024-03-10', 'High blood pressure'),
+    ((SELECT id FROM api_data.patients WHERE first_name = 'John' AND last_name = 'Doe'), 
+     (SELECT id FROM api_data.doctors WHERE last_name = 'Davis'), '2023-11-20', 'Annual checkup');
 
 INSERT INTO api_data.visits
 VALUES 
-    ((SELECT id FROM patients WHERE first_name = 'Jane' AND last_name = 'Smith'), 
-     (SELECT id FROM doctors WHERE last_name = 'Brown'), '2024-02-05', 'Skin rash'),
-    ((SELECT id FROM patients WHERE first_name = 'Jane' AND last_name = 'Smith'), 
-     (SELECT id FROM doctors WHERE last_name = 'Davis'), '2023-08-15', 'Vaccination');
+    ((SELECT id FROM api_data.patients WHERE first_name = 'Jane' AND last_name = 'Smith'), 
+     (SELECT id FROM api_data.doctors WHERE last_name = 'Brown'), '2024-02-05', 'Skin rash'),
+    ((SELECT id FROM api_data.patients WHERE first_name = 'Jane' AND last_name = 'Smith'), 
+     (SELECT id FROM api_data.doctors WHERE last_name = 'Davis'), '2023-08-15', 'Vaccination');
 
 INSERT INTO api_data.visits
 VALUES 
-    ((SELECT id FROM patients WHERE first_name = 'Michael' AND last_name = 'Johnson'), 
-     (SELECT id FROM doctors WHERE last_name = 'Johnson'), '2024-01-18', 'Heart palpitations'),
-    ((SELECT id FROM patients WHERE first_name = 'Michael' AND last_name = 'Johnson'), 
-     (SELECT id FROM doctors WHERE last_name = 'Brown'), '2023-10-30', 'Acne treatment');
+    ((SELECT id FROM api_data.patients WHERE first_name = 'Michael' AND last_name = 'Johnson'), 
+     (SELECT id FROM api_data.doctors WHERE last_name = 'Johnson'), '2024-01-18', 'Heart palpitations'),
+    ((SELECT id FROM api_data.patients WHERE first_name = 'Michael' AND last_name = 'Johnson'), 
+     (SELECT id FROM api_data.doctors WHERE last_name = 'Brown'), '2023-10-30', 'Acne treatment');
 
 -- migrate:down

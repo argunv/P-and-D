@@ -167,7 +167,7 @@ def add_patient(data: dict) -> bool:
     Returns:
         bool: True if addition is successful, False otherwise.
     """
-    values = [data[key] for key in DB_KEYS['patients']]
+    values = [data[key] for key in DB_KEYS['api_data.patients']]
     return execute_query(query.INSERT_PATIENT, values)
 
 
@@ -181,7 +181,7 @@ def add_doctor(data: dict) -> bool:
     Returns:
         bool: True if addition is successful, False otherwise.
     """
-    values = [data[key] for key in DB_KEYS['doctors']]
+    values = [data[key] for key in DB_KEYS['api_data.doctors']]
     return execute_query(query.INSERT_DOCTOR, values)
 
 

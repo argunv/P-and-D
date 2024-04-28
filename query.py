@@ -1,52 +1,52 @@
 # SELECT
 SELECT_ALL_PATIENTS = """
-SELECT * FROM patients
+SELECT * FROM api_data.patients
 """
 
 SELECT_ALL_DOCTORS = """
-SELECT * FROM doctors
+SELECT * FROM api_data.doctors
 """
 
 # INSERT
 INSERT_PATIENT = """
-INSERT INTO patients (first_name, last_name, date_of_birth, gender)
+INSERT INTO api_data.patients (first_name, last_name, date_of_birth, gender)
 VALUES (%s, %s, %s, %s)
 """
 
 INSERT_DOCTOR = """
-INSERT INTO doctors (first_name, last_name, specialization)
+INSERT INTO api_data.doctors (first_name, last_name, specialization)
 VALUES (%s, %s, %s)
 """
 
 # DELETE
 DELETE_PATIENT = """
-DELETE FROM patients WHERE id = %s
+DELETE FROM api_data.patients WHERE id = %s
 """
 
 DELETE_DOCTOR = """
-DELETE FROM doctors WHERE id = %s
+DELETE FROM api_data.doctors WHERE id = %s
 """
 
 # UPDATE
 UPDATE_PATIENT = """
-UPDATE patients
+UPDATE api_data.patients
 SET {attrs}
 WHERE id = %s
 """
 
 UPDATE_DOCTOR = """
-UPDATE doctors
+UPDATE api_data.doctors
 SET {attrs}
 WHERE id = %s
 """
 
 # SELECT BY ID
 SELECT_PATIENT_BY_ID = """
-SELECT * FROM patients WHERE id = %s
+SELECT * FROM api_data.patients WHERE id = %s
 """
 
 SELECT_DOCTOR_BY_ID = """
-SELECT * FROM doctors WHERE id = %s
+SELECT * FROM api_data.doctors WHERE id = %s
 """
 
 # SELECT PATIENTS WITH DOCTORS' VISITS
@@ -66,11 +66,11 @@ WITH patients_with_doctors AS (
                 'specialization', d.specialization)
             ) FILTER (WHERE d.id IS NOT NULL), '[]') AS doctors
     FROM
-        patients p
+        api_data.patients p
     LEFT JOIN
-        visits v ON p.id = v.patient_id
+        api_data.visits v ON p.id = v.patient_id
     LEFT JOIN
-        doctors d ON v.doctor_id = d.id
+        api_data.doctors d ON v.doctor_id = d.id
     GROUP BY
         p.id
 ),
@@ -83,20 +83,22 @@ patients_with_visits AS (
                 'diagnosis', v.diagnosis)
             ) FILTER (WHERE v.visit_date IS NOT NULL), '[]') AS visits
     FROM
-        patients p
+        api_data.patients p
     LEFT JOIN
-        visits v ON p.id = v.patient_id
+        api_data.visits v ON p.id = v.patient_id
     GROUP BY
         p.id
 )
 SELECT
-    pwd.id,
-    pwd.first_name,
-    pwd.last_name,
-    pwd.date_of_birth,
-    pwd.gender,
-    pwd.doctors,
-    pwv.visits
+    json_build_object(
+        'id', pwd.id,
+        'first_name', pwd.first_name,
+        'last_name', pwd.last_name,
+        'date_of_birth', pwd.date_of_birth,
+        'gender', pwd.gender,
+        'doctors', pwd.doctors,
+        'visits', pwv.visits
+    ) AS patient_info
 FROM
     patients_with_doctors pwd
 JOIN
