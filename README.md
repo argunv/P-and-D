@@ -30,12 +30,12 @@ This project aims to create a RESTful API using *Flask* for managing patients an
 Create a `.env` file in the root directory with the following variables:
 
 ```
-PG_HOST={<i>your host here</i>}
-PG_PORT={<i>PostgreSQL port</i>}
-PG_DBNAME={<i>PostgreSQL database name</i>}
-PG_USER={<i>PostgreSQL username</i>}
-PG_PASSWORD={<i>PostgreSQL password</i>}
-FLASK_PORT={<i>Flask port</i>}
+PG_HOST={your host here}
+PG_PORT={PostgreSQL port}
+PG_DBNAME={PostgreSQL database name}
+PG_USER={PostgreSQL username}
+PG_PASSWORD={PostgreSQL password}
+FLASK_PORT={Flask port}
 ```
 
 ## Description
@@ -55,7 +55,7 @@ The project implements CRUD (Create, Read, Update, Delete) REST API methods for 
 
 - A patient can have multiple visits.
 - Each visit belongs to only one patient.
-- Visit entity includes: patient_id, date, diagnosis.
+- Visit entity includes: patient_id, doctor_id, date, diagnosis.
 
 ## Implementation Details
 
