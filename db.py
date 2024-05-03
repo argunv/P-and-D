@@ -4,6 +4,7 @@ from typing import Callable
 
 from psycopg2 import pool
 from psycopg2.extensions import connection
+from psycopg2.extras import RealDictCursor
 
 import query
 import validate
@@ -41,6 +42,7 @@ class ConnectionPool:
             'dbname': os.environ.get('POSTGRES_DB', 'test'),
             'user': os.environ.get('POSTGRES_USER', 'test'),
             'password': os.environ.get('POSTGRES_PASSWORD'),
+            'cursor_factory': RealDictCursor,
         }
 
         self.pool = pool.SimpleConnectionPool(MIN_CONN, MAX_CONN, **credentials)
@@ -167,7 +169,7 @@ def add_patient(data: dict) -> bool:
     Returns:
         bool: True if addition is successful, False otherwise.
     """
-    values = [data[key] for key in DB_KEYS['api_data.patients']]
+    values = [data[key] for key in DB_KEYS['patients']]
     return execute_query(query.INSERT_PATIENT, values)
 
 
@@ -181,7 +183,7 @@ def add_doctor(data: dict) -> bool:
     Returns:
         bool: True if addition is successful, False otherwise.
     """
-    values = [data[key] for key in DB_KEYS['api_data.doctors']]
+    values = [data[key] for key in DB_KEYS['doctors']]
     return execute_query(query.INSERT_DOCTOR, values)
 
 

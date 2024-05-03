@@ -90,15 +90,13 @@ patients_with_visits AS (
         p.id
 )
 SELECT
-    json_build_object(
-        'id', pwd.id,
-        'first_name', pwd.first_name,
-        'last_name', pwd.last_name,
-        'date_of_birth', pwd.date_of_birth,
-        'gender', pwd.gender,
-        'doctors', pwd.doctors,
-        'visits', pwv.visits
-    ) AS patient_info
+    pwd.id,
+    pwd.first_name,
+    pwd.last_name,
+    pwd.date_of_birth,
+    pwd.gender,
+    pwd.doctors,
+    pwv.visits
 FROM
     patients_with_doctors pwd
 JOIN

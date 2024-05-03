@@ -56,7 +56,7 @@ def doctor(data: dict) -> bool:
         return False
     if not isinstance(data['first_name'], str) or not isinstance(data['last_name'], str):
         return False
-    if not isinstance(data['specialty'], str):
+    if not isinstance(data['specialization'], str):
         return False
     return True
 
@@ -110,7 +110,7 @@ def new_doctor(data: dict) -> bool:
     """
     if not isinstance(data, dict) or not any(key in data for key in DB_KEYS['doctors']):
         return False
-    if 'specialty' in data and not isinstance(data['specialty'], str):
+    if 'specialization' in data and not isinstance(data['specialization'], str):
         return False
     return True
 

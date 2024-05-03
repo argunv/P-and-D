@@ -41,7 +41,7 @@ def patients_requests() -> tuple:
         tuple: Tuple containing JSON response and status code.
     """
     if request.method == "POST":
-        return handle_request(db.add_patient, True)
+        return handle_request(db.add_patient, is_json=True)
 
 
 @app.route("/patients/<patient_id>", methods=["DELETE", "PUT"])
@@ -79,7 +79,7 @@ def doctors_requests() -> tuple:
         tuple: Tuple containing JSON response and status code.
     """
     if request.method == "POST":
-        return handle_request(db.add_doctor, True)
+        return handle_request(db.add_doctor, is_json=True)
 
 
 @app.route("/doctors/<doctor_id>", methods=["DELETE", "PUT"])
