@@ -57,7 +57,7 @@ def patients_id_requests(patient_id: str) -> tuple:
     if request.method == "DELETE":
         return handle_request(db.delete_patient, False, patient_id)
     elif request.method == "PUT":
-        return handle_request(db.update_patient, False, patient_id)
+        return handle_request(db.update_patient, True, patient_id)
 
 
 @app.route("/doctors", methods=["GET"])
@@ -95,7 +95,7 @@ def doctors_id_requests(doctor_id: str) -> tuple:
     if request.method == "DELETE":
         return handle_request(db.delete_doctor, False, doctor_id)
     elif request.method == "PUT":
-        return handle_request(db.update_doctor, False, doctor_id)
+        return handle_request(db.update_doctor, True, doctor_id)
 
 
 @app.route("/patients/all", methods=["GET"])

@@ -99,15 +99,18 @@ def medical_record(data: dict) -> bool:
     return True
 
 
-def new_doctor(data: dict) -> bool:
+def new_doctor(doctor_id: str, data: dict) -> bool:
     """Validate new doctor data.
 
     Args:
+        doctor_id (str): Doctor id to be validated as UUID.
         data (dict): New doctor data to be validated.
 
     Returns:
         bool: True if the data is valid, False otherwise.
     """
+    if not UUID(doctor_id):
+        return False
     if not isinstance(data, dict) or not any(key in data for key in DB_KEYS['doctors']):
         return False
     if 'specialization' in data and not isinstance(data['specialization'], str):
@@ -115,15 +118,18 @@ def new_doctor(data: dict) -> bool:
     return True
 
 
-def new_patient(data: dict) -> bool:
+def new_patient(patient_id: str, data: dict) -> bool:
     """Validate new patient data.
 
     Args:
+        patient_id (str): Doctor id to be validated as UUID.
         data (dict): New patient data to be validated.
 
     Returns:
         bool: True if the data is valid, False otherwise.
     """
+    if not UUID(patient_id):
+        return False
     if not isinstance(data, dict) or not any(key in data for key in DB_KEYS['patients']):
         return False
     if 'gender' in data and data['gender'] not in ['Male', 'Female']:
