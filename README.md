@@ -29,13 +29,21 @@ This project aims to create a RESTful API using *Flask* for managing patients an
 
 Create a `.env` file in the root directory with the following variables:
 
+For `db.py`:
 ```
 PG_HOST={your host here}
 POSTGRES_PORT={PostgreSQL port}
-POSTGRES_DBNAME={PostgreSQL database name}
+POSTGRES_DB={PostgreSQL database name}
 POSTGRES_USER={PostgreSQL username}
 POSTGRES_PASSWORD={PostgreSQL password}
+```
+
+For `docker-compose.yml`:
+```
 FLASK_PORT={Flask port}
+PG_USER={PostgreSQL username}
+PG_DBNAME={PostgreSQL database name}
+PG_PORT={PostgreSQL password}
 ```
 
 ## Description
