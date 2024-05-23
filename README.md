@@ -85,7 +85,7 @@ The project implements CRUD (Create, Read, Update, Delete) REST API methods for 
 - `GET /patients`: Retrieve all patients.
 - `GET /patients/{patient_id}`: Retrieve a specific patient.
 - `GET /patients/all`: Retrieve all patients with their doctors and visits.
-- `GET /patients/search?first_name={first_name}&last_name={last_name}&gender={gender}`: Search for patients by first name, last name, and gender. All parameters are optional and can be used in combination.
+- `GET /patients/search?first_name={first_name}&last_name={last_name}`: Search for patients by first name, last name. All parameters are optional and can be used in combination.
 - `POST /patients`: Create a new patient.
 - `PUT /patients/{patient_id}`: Update an existing patient.
 - `DELETE /patients/{patient_id}`: Delete a patient.
@@ -94,7 +94,7 @@ The project implements CRUD (Create, Read, Update, Delete) REST API methods for 
 
 - `GET /doctors`: Retrieve all doctors.
 - `GET /doctors/{doctor_id}`: Retrieve a specific doctor.
-- `GET /doctors/search?first_name={first_name}&last_name={last_name}&specialization={specialization}`: Search for doctors by first name, last name, and specialization. All parameters are optional and can be used in combination.
+- `GET /doctors/search?first_name={first_name}&last_name={last_name}`: Search for doctors by first name, last name. All parameters are optional and can be used in combination.
 - `POST /doctors`: Create a new doctor.
 - `PUT /doctors/{doctor_id}`: Update an existing doctor.
 - `DELETE /doctors/{doctor_id}`: Delete a doctor.
