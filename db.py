@@ -287,3 +287,49 @@ def get_patients_with_doctors_visits() -> list:
         with connection.cursor() as cursor:
             cursor.execute(query.SELECT_PATIENTS_DOCTORS_VISITS)
             return cursor.fetchall()
+
+
+def search_patients(first_name=None, last_name=None) -> list:
+    """Search patients by first name or last name.
+
+    Args:
+        first_name (str, optional): First name of the patient.
+        last_name (str, optional): Last name of the patient.
+
+    Returns:
+        list: List of matched patients.
+    """
+    with db_pool.get_connection() as connection:
+        with connection.cursor() as cursor:
+            if first_name and last_name:
+                cursor.execute(query.SEARCH_PATIENTS_BOTH, (f'%{first_name}%', f'%{last_name}%'))
+            elif first_name:
+                cursor.execute(query.SEARCH_PATIENTS_FIRST, (f'%{first_name}%',))
+            elif last_name:
+                cursor.execute(query.SEARCH_PATIENTS_LAST, (f'%{last_name}%',))
+            else:
+                return []
+            return cursor.fetchall()
+
+
+def search_doctors(first_name=None, last_name=None) -> list:
+    """Search doctors by first name or last name.
+
+    Args:
+        first_name (str, optional): First name of the doctor.
+        last_name (str, optional): Last name of the doctor.
+
+    Returns:
+        list: List of matched doctors.
+    """
+    with db_pool.get_connection() as connection:
+        with connection.cursor() as cursor:
+            if first_name and last_name:
+                cursor.execute(query.SEARCH_DOCTORS_BOTH, (f'%{first_name}%', f'%{last_name}%'))
+            elif first_name:
+                cursor.execute(query.SEARCH_DOCTORS_FIRST, (f'%{first_name}%',))
+            elif last_name:
+                cursor.execute(query.SEARCH_DOCTORS_LAST, (f'%{last_name}%',))
+            else:
+                return []
+            return cursor.fetchall()

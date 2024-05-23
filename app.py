@@ -109,5 +109,31 @@ def get_patients_with_doctors_visits() -> str:
     return jsonify(patients)
 
 
+@app.route("/patients/search", methods=["GET"])
+def search_patients() -> str:
+    """Search patients by first name or last name.
+
+    Returns:
+        str: JSON response containing matched patients.
+    """
+    first_name = request.args.get('first_name')
+    last_name = request.args.get('last_name')
+    patients = db.search_patients(first_name, last_name)
+    return jsonify(patients)
+
+
+@app.route("/doctors/search", methods=["GET"])
+def search_doctors() -> str:
+    """Search doctors by first name or last name.
+
+    Returns:
+        str: JSON response containing matched doctors.
+    """
+    first_name = request.args.get('first_name')
+    last_name = request.args.get('last_name')
+    doctors = db.search_doctors(first_name, last_name)
+    return jsonify(doctors)
+
+
 if __name__ == "__main__":
     app.run(debug=False)

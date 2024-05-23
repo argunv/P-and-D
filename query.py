@@ -102,3 +102,35 @@ FROM
 JOIN
     patients_with_visits pwv ON pwd.id = pwv.id;
 """
+
+# SEARCH PATIENTS
+SEARCH_PATIENTS_BOTH = """
+SELECT * FROM api_data.patients
+WHERE first_name ILIKE %s AND last_name ILIKE %s
+"""
+
+SEARCH_PATIENTS_FIRST = """
+SELECT * FROM api_data.patients
+WHERE first_name ILIKE %s
+"""
+
+SEARCH_PATIENTS_LAST = """
+SELECT * FROM api_data.patients
+WHERE last_name ILIKE %s
+"""
+
+# SEARCH DOCTORS
+SEARCH_DOCTORS_BOTH = """
+SELECT * FROM api_data.doctors
+WHERE first_name ILIKE %s AND last_name ILIKE %s
+"""
+
+SEARCH_DOCTORS_FIRST = """
+SELECT * FROM api_data.doctors
+WHERE first_name ILIKE %s
+"""
+
+SEARCH_DOCTORS_LAST = """
+SELECT * FROM api_data.doctors
+WHERE last_name ILIKE %s
+"""
