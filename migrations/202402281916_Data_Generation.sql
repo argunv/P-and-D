@@ -29,8 +29,8 @@ SELECT
 FROM generate_series(1, 50) AS id
 CROSS JOIN (
     SELECT 
-        '{Dr. Smith,Dr. Johnson,Dr. Williams,Dr. Brown,Dr. Davis,Dr. Miller,Dr. Wilson,Dr. Taylor,Dr. Clark}'::text[] AS first_names,
-        '{Ivanov,Smirnov,Kuznetsov,Popov,Vasiliev,Petrov,Sokolov,Mikhailov,Novikov,Fedorov}'::text[] AS last_names
+        '{Vladimir,Sergei,Andrei,Anton,David,Pavel,Artem,Vladislav,Dmitry}'::text[] AS first_names,
+        '{Ivanov,Smirnov,Kuznetsov,Popov,Vasiliev,Petrov,Sokolov,Mikhailov,Novikov,Fedorov,Putin}'::text[] AS last_names
 ) AS nms;
 
 -- migrate:down
