@@ -26,7 +26,7 @@ SELECT
         WHEN 1 THEN 'Pediatrician'
         ELSE 'Dermatologist'
     END
-FROM generate_series(1, 50) AS id
+FROM generate_series(1, 500) AS id
 CROSS JOIN (
     SELECT 
         '{Vladimir,Sergei,Andrei,Anton,David,Pavel,Artem,Vladislav,Dmitry}'::text[] AS first_names,

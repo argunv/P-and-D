@@ -302,14 +302,15 @@ def search_patients(first_name=None, last_name=None) -> list:
     with db_pool.get_connection() as connection:
         with connection.cursor() as cursor:
             if first_name and last_name:
-                cursor.execute(query.SEARCH_PATIENTS_BOTH, (f'%{first_name}%', f'%{last_name}%'))
+                cursor.execute(query.SEARCH_PATIENTS_BOTH, (first_name, last_name))
             elif first_name:
-                cursor.execute(query.SEARCH_PATIENTS_FIRST, (f'%{first_name}%',))
+                cursor.execute(query.SEARCH_PATIENTS_FIRST, (first_name,))
             elif last_name:
-                cursor.execute(query.SEARCH_PATIENTS_LAST, (f'%{last_name}%',))
+                cursor.execute(query.SEARCH_PATIENTS_LAST, (last_name,))
             else:
                 return []
             return cursor.fetchall()
+
 
 
 def search_doctors(first_name=None, last_name=None) -> list:

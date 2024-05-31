@@ -106,17 +106,17 @@ JOIN
 # SEARCH PATIENTS
 SEARCH_PATIENTS_BOTH = """
 SELECT * FROM api_data.patients
-WHERE first_name ILIKE %s AND last_name ILIKE %s
+WHERE first_name = %s AND last_name = %s;
 """
 
 SEARCH_PATIENTS_FIRST = """
 SELECT * FROM api_data.patients
-WHERE first_name ILIKE %s
+WHERE first_name = %s;
 """
 
 SEARCH_PATIENTS_LAST = """
 SELECT * FROM api_data.patients
-WHERE last_name ILIKE %s
+WHERE last_name = %s;
 """
 
 # SEARCH DOCTORS
